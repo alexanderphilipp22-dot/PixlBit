@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hesap Makinesi</string>
+    <string name="share_extracting">Görüntü analiz ediliyor…</string>
+    <string name="share_status_error">Hata</string>
+    <string name="share_error_no_image">Hiçbir görüntü aktarılmadı (EXTRA_STREAM içermeyen ACTION_SEND).</string>
+    <string name="share_error_decode">Görüntü yüklenemedi.</string>
+    <string name="share_error_not_image">Paylaşılan içerik bir görüntü değil veya geçersiz türde.</string>
+    <string name="share_error_no_payload">Bu görüntü geçerli bir Calculator piksel yatağı içermiyor veya dosya değiştirilmiş.</string>
+    <string name="share_error_too_large">Görüntü güvenli işleme için çok büyük. Lütfen daha küçük bir görüntü paylaşın.</string>
+    <string name="share_prompt">Gizli mesaj bulundu – lütfen parolayı girin.</string>
+    <string name="share_decrypting">Şifre çözülüyor…</string>
+    <string name="share_password_title">Şifre çözme parolası</string>
+    <string name="share_password_hint">Parola</string>
+    <string name="share_decrypt">Şifreyi çöz</string>
+    <string name="share_cancel">İptal</string>
+    <string name="share_error_empty_password">Lütfen bir parola girin.</string>
+    <string name="share_error_wrong_password">Yanlış parola veya değiştirilmiş veri.</string>
+    <string name="share_result_title">Çözülen metin:</string>
+    <string name="panic_setup_title_create">Panik kodu belirle</string>
+    <string name="panic_setup_title_change">Panik kodunu değiştir</string>
+    <string name="panic_setup_info_create">Bir panik kodu belirleyin. Bu kod daha sonra parola olarak girilirse Calculator kayıtlı tüm görüntüleri ve verileri hemen siler.\n\nKod bir ondalık ayırıcı (virgül veya nokta) içermelidir, örn. 12,34 – hesap makinesi kodu yalnızca böyle tanır.\n\nKod düz metin olarak saklanmaz ve kurtarılamaz – lütfen iyi hatırlayın.</string>
+    <string name="panic_setup_info_change">Yeni panik kodu belirleyin. Güvenlik için önce mevcut kod istenir.</string>
+    <string name="panic_setup_current_hint">Mevcut panik kodu</string>
+    <string name="panic_setup_new_hint">Yeni panik kodu (en az %1$d karakter, virgül/nokta ile)</string>
+    <string name="panic_setup_repeat_hint">Yeni panik kodu (tekrar)</string>
+    <string name="panic_setup_save">Kaydet</string>
+    <string name="panic_setup_create">Kodu belirle</string>
+    <string name="panic_setup_cancel">İptal</string>
+    <string name="panic_saved">Panik kodu kaydedildi</string>
+    <string name="panic_error_current">Mevcut panik kodu yanlış.</string>
+    <string name="panic_error_min_length">Panik kodu en az %1$d karakter olmalıdır.</string>
+    <string name="panic_error_separator">Panik kodu virgül veya nokta içermelidir (örn. 12,34).</string>
+    <string name="panic_error_too_long">Panik kodu çok uzun.</string>
+    <string name="panic_error_mismatch">İki giriş eşleşmiyor.</string>
+    <string name="panic_error_store">Panik kodu kaydedilemedi. Lütfen tekrar deneyin.</string>
+    <string name="download_blocked">İndirme engellendi: Calculator ağdan hiçbir şey yüklemez.</string>
+    <string name="download_saved">İndirilenler klasörüne kaydedildi</string>
+    <string name="download_started">İndirme başladı</string>
+    <string name="download_failed">İndirme başarısız</string>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">계산기</string>
+    <string name="share_extracting">이미지 분석 중…</string>
+    <string name="share_status_error">오류</string>
+    <string name="share_error_no_image">이미지가 전달되지 않았습니다 (EXTRA_STREAM 없는 ACTION_SEND).</string>
+    <string name="share_error_decode">이미지를 불러올 수 없습니다.</string>
+    <string name="share_error_not_image">공유된 콘텐츠가 이미지가 아니거나 유효하지 않은 형식입니다.</string>
+    <string name="share_error_no_payload">이 이미지에는 유효한 Calculator 픽셀 베드가 없거나 파일이 변조되었습니다.</string>
+    <string name="share_error_too_large">이미지가 안전한 처리에 너무 큽니다. 더 작은 이미지를 공유하세요.</string>
+    <string name="share_prompt">비밀 메시지를 찾았습니다. 비밀번호를 입력하세요.</string>
+    <string name="share_decrypting">해독 중…</string>
+    <string name="share_password_title">복호화 비밀번호</string>
+    <string name="share_password_hint">비밀번호</string>
+    <string name="share_decrypt">해독</string>
+    <string name="share_cancel">취소</string>
+    <string name="share_error_empty_password">비밀번호를 입력하세요.</string>
+    <string name="share_error_wrong_password">잘못된 비밀번호이거나 데이터가 변조되었습니다.</string>
+    <string name="share_result_title">해독된 텍스트:</string>
+    <string name="panic_setup_title_create">패닉 코드 설정</string>
+    <string name="panic_setup_title_change">패닉 코드 변경</string>
+    <string name="panic_setup_info_create">패닉 코드를 설정하세요. 나중에 이 코드를 비밀번호로 입력하면 Calculator이 저장된 모든 이미지와 데이터를 즉시 삭제합니다.\n\n코드는 반드시 소수점 구분자(쉼표 또는 마침표)를 포함해야 합니다(예: 12.34). 계산기가 이를 코드로 인식합니다.\n\n코드는 평문으로 저장되지 않으며 복구할 수 없습니다. 잘 기억하세요.</string>
+    <string name="panic_setup_info_change">새 패닉 코드를 설정하세요. 보안을 위해 먼저 현재 코드를 입력해야 합니다.</string>
+    <string name="panic_setup_current_hint">현재 패닉 코드</string>
+    <string name="panic_setup_new_hint">새 패닉 코드(최소 %1$d자, 쉼표/마침표 포함)</string>
+    <string name="panic_setup_repeat_hint">새 패닉 코드(반복)</string>
+    <string name="panic_setup_save">저장</string>
+    <string name="panic_setup_create">코드 설정</string>
+    <string name="panic_setup_cancel">취소</string>
+    <string name="panic_saved">패닉 코드가 저장되었습니다</string>
+    <string name="panic_error_current">현재 패닉 코드가 올바르지 않습니다.</string>
+    <string name="panic_error_min_length">패닉 코드는 최소 %1$d자여야 합니다.</string>
+    <string name="panic_error_separator">패닉 코드는 쉼표 또는 마침표를 포함해야 합니다(예: 12.34).</string>
+    <string name="panic_error_too_long">패닉 코드가 너무 깁니다.</string>
+    <string name="panic_error_mismatch">두 입력이 일치하지 않습니다.</string>
+    <string name="panic_error_store">패닉 코드를 저장할 수 없습니다. 다시 시도하세요.</string>
+    <string name="download_blocked">다운로드 차단됨: Calculator은 네트워크에서 아무것도 로드하지 않습니다.</string>
+    <string name="download_saved">다운로드 폴더에 저장됨</string>
+    <string name="download_started">다운로드 시작됨</string>
+    <string name="download_failed">다운로드 실패</string>
+</resources>

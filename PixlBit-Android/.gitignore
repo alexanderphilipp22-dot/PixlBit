@@ -1,0 +1,50 @@
+# =============================================================================
+# Calculator / PIXLBIT — .gitignore
+# Ziel: es darf NIEMALS ein Secret, Keystore oder Build-Artefakt ins Repo.
+# =============================================================================
+
+# --- Android Studio / IntelliJ / Gradle -------------------------------------
+*.iml
+.gradle/
+.kotlin/
+/local.properties
+local.properties
+.idea/
+.DS_Store
+
+# Build-Ausgaben (Root, app/ und matrixui/ gleichermassen)
+build/
+**/build/
+/captures
+.externalNativeBuild/
+.cxx/
+
+# --- Build-Artefakte: niemals einchecken -------------------------------------
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+# Manuelles Release-Staging (signierte APK + Metadaten + Baseline-Profile)
+/app/release/
+
+# --- Keystores & Secrets: NIEMALS ins Repo --------------------------------
+# Upload-/Signing-Keys gehoeren nicht in die Versionsverwaltung.
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+
+# --- Temporäre / verwaiste Dateien ------------------------------------------
+*.bak
+*.orig
+*.tmp
+*.log
+*.phase*
+
+# --- Editor-/Betriebssystem-Dateien ------------------------------------------
+*.swp
+*~
+Thumbs.db

@@ -1,0 +1,28 @@
+{
+  // Das eigentliche Android-/Gradle-Projekt liegt in einem Unterordner
+  // ("PixlBit-Android"). VS Code importiert Gradle-Projekte standardmaessig nur
+  // auf oberster Ebene - dadurch bleibt der Java-/Kotlin-Classpath leer und der
+  // Editor meldet massenhaft "Unresolved reference" (Android/AndroidX/Kotlin),
+  // obwohl der echte Gradle-Build fehlerfrei durchlaeuft.
+  "gradle.nestedProjects": true,
+
+  // Java-Language-Server: Gradle-Import aktivieren und Android-Unterstuetzung
+  // einschalten, damit R-Klassen, Manifest-Ressourcen und AndroidX aufgeloest werden.
+  "java.import.gradle.enabled": true,
+  "java.import.gradle.wrapper.enabled": true,
+  "java.import.projectSelection": "automatic",
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.jdt.ls.androidSupport.enabled": true,
+
+  // Generierte Build-Ausgaben nicht in Suche/Watcher aufnehmen: verhindert, dass
+  // der Language-Server Dateien in "app/build" offen haelt. Genau diese Sperre
+  // liess zuvor ":app:clean" mit "Unable to delete ... R.jar" scheitern.
+  "files.watcherExclude": {
+    "**/build/**": true,
+    "**/.gradle/**": true
+  },
+  "search.exclude": {
+    "**/build": true,
+    "**/.gradle": true
+  }
+}

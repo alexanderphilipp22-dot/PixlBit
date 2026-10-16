@@ -1,0 +1,8 @@
+﻿<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Calculator" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:windowBackground">@color/calc_background</item>
+        <item name="android:statusBarColor">@color/calc_background</item>
+        <item name="android:navigationBarColor">@color/calc_background</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
+    </style>
+</resources>

@@ -1,0 +1,5 @@
+﻿<resources>
+    <color name="calc_background">#0B0F19</color>
+    <color name="calc_lime">#A3E635</color>
+    <color name="calc_icon_background">#FF000000</color>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">计算器</string>
+    <string name="share_extracting">正在分析图像…</string>
+    <string name="share_status_error">错误</string>
+    <string name="share_error_no_image">未传递任何图像（没有 EXTRA_STREAM 的 ACTION_SEND）。</string>
+    <string name="share_error_decode">无法加载图像。</string>
+    <string name="share_error_not_image">共享的内容不是图像或类型无效。</string>
+    <string name="share_error_no_payload">此图像不包含有效的 Calculator 像素层，或文件已被篡改。</string>
+    <string name="share_error_too_large">图像过大，无法安全处理。请分享较小的图像。</string>
+    <string name="share_prompt">发现秘密消息——请输入密码。</string>
+    <string name="share_decrypting">正在解密…</string>
+    <string name="share_password_title">解密密码</string>
+    <string name="share_password_hint">密码</string>
+    <string name="share_decrypt">解密</string>
+    <string name="share_cancel">取消</string>
+    <string name="share_error_empty_password">请输入密码。</string>
+    <string name="share_error_wrong_password">密码错误或数据已被篡改。</string>
+    <string name="share_result_title">解密后的文本：</string>
+    <string name="panic_setup_title_create">设置紧急代码</string>
+    <string name="panic_setup_title_change">更改紧急代码</string>
+    <string name="panic_setup_info_create">设置紧急代码。如果之后将此代码作为密码输入，Calculator 将立即删除所有存储的图像和数据。\n\n代码必须包含小数分隔符（逗号或句点），例如 12.34——只有这样计算器才能将其识别为代码。\n\n代码不会以明文存储，也无法恢复——请牢记。</string>
+    <string name="panic_setup_info_change">设置新的紧急代码。出于安全考虑，将首先询问当前代码。</string>
+    <string name="panic_setup_current_hint">当前紧急代码</string>
+    <string name="panic_setup_new_hint">新紧急代码（至少 %1$d 个字符，含逗号/句点）</string>
+    <string name="panic_setup_repeat_hint">新紧急代码（重复）</string>
+    <string name="panic_setup_save">保存</string>
+    <string name="panic_setup_create">设置代码</string>
+    <string name="panic_setup_cancel">取消</string>
+    <string name="panic_saved">紧急代码已保存</string>
+    <string name="panic_error_current">当前紧急代码不正确。</string>
+    <string name="panic_error_min_length">紧急代码至少需要 %1$d 个字符。</string>
+    <string name="panic_error_separator">紧急代码必须包含逗号或句点（例如 12.34）。</string>
+    <string name="panic_error_too_long">紧急代码过长。</string>
+    <string name="panic_error_mismatch">两次输入不一致。</string>
+    <string name="panic_error_store">无法保存紧急代码。请重试。</string>
+    <string name="download_blocked">下载被阻止：Calculator 不会从网络加载任何内容。</string>
+    <string name="download_saved">已保存到下载文件夹</string>
+    <string name="download_started">下载已开始</string>
+    <string name="download_failed">下载失败</string>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">آلة حاسبة</string>
+    <string name="share_extracting">جارٍ تحليل الصورة…</string>
+    <string name="share_status_error">خطأ</string>
+    <string name="share_error_no_image">لم يتم تمرير أي صورة (ACTION_SEND بدون EXTRA_STREAM).</string>
+    <string name="share_error_decode">تعذّر تحميل الصورة.</string>
+    <string name="share_error_not_image">المحتوى المُشارَك ليس صورة أو نوعه غير صالح.</string>
+    <string name="share_error_no_payload">لا تحتوي هذه الصورة على طبقة بكسل Calculator صالحة أو تم التلاعب بالملف.</string>
+    <string name="share_error_too_large">الصورة كبيرة جدًا للمعالجة الآمنة. يُرجى مشاركة صورة أصغر.</string>
+    <string name="share_prompt">تم العثور على رسالة سرية – يُرجى إدخال كلمة المرور.</string>
+    <string name="share_decrypting">جارٍ فك التشفير…</string>
+    <string name="share_password_title">كلمة مرور فك التشفير</string>
+    <string name="share_password_hint">كلمة المرور</string>
+    <string name="share_decrypt">فك التشفير</string>
+    <string name="share_cancel">إلغاء</string>
+    <string name="share_error_empty_password">يُرجى إدخال كلمة مرور.</string>
+    <string name="share_error_wrong_password">كلمة مرور خاطئة أو بيانات تم التلاعب بها.</string>
+    <string name="share_result_title">النص المُفكَّك تشفيره:</string>
+    <string name="panic_setup_title_create">تعيين رمز الطوارئ</string>
+    <string name="panic_setup_title_change">تغيير رمز الطوارئ</string>
+    <string name="panic_setup_info_create">عيّن رمز طوارئ. إذا أُدخل هذا الرمز لاحقًا بدلًا من كلمة المرور، يحذف Calculator فورًا جميع الصور والبيانات المخزنة.\n\nيجب أن يتضمن الرمز فاصلًا عشريًا (فاصلة أو نقطة)، مثل 12.34 – بهذه الطريقة فقط تتعرف عليه الآلة الحاسبة كرمز.\n\nلا يُخزَّن الرمز كنص عادي ولا يمكن استعادته – يُرجى تذكّره جيدًا.</string>
+    <string name="panic_setup_info_change">عيّن رمز طوارئ جديدًا. لأسباب أمنية، يُطلب أولًا الرمز الحالي.</string>
+    <string name="panic_setup_current_hint">رمز الطوارئ الحالي</string>
+    <string name="panic_setup_new_hint">رمز الطوارئ الجديد (%1$d حرفًا على الأقل، مع فاصلة/نقطة)</string>
+    <string name="panic_setup_repeat_hint">رمز الطوارئ الجديد (تكرار)</string>
+    <string name="panic_setup_save">حفظ</string>
+    <string name="panic_setup_create">تعيين الرمز</string>
+    <string name="panic_setup_cancel">إلغاء</string>
+    <string name="panic_saved">تم حفظ رمز الطوارئ</string>
+    <string name="panic_error_current">رمز الطوارئ الحالي غير صحيح.</string>
+    <string name="panic_error_min_length">يجب أن يتكون رمز الطوارئ من %1$d حرفًا على الأقل.</string>
+    <string name="panic_error_separator">يجب أن يتضمن رمز الطوارئ فاصلة أو نقطة (مثل 12.34).</string>
+    <string name="panic_error_too_long">رمز الطوارئ طويل جدًا.</string>
+    <string name="panic_error_mismatch">الإدخالان غير متطابقين.</string>
+    <string name="panic_error_store">تعذّر حفظ رمز الطوارئ. يُرجى المحاولة مرة أخرى.</string>
+    <string name="download_blocked">التنزيل محظور: لا يحمّل Calculator أي شيء من الشبكة.</string>
+    <string name="download_saved">تم الحفظ في مجلد التنزيلات</string>
+    <string name="download_started">بدأ التنزيل</string>
+    <string name="download_failed">فشل التنزيل</string>
+</resources>

@@ -1,0 +1,149 @@
+================================================================================
+CALCULATOR (ehem. PIXLBIT) — FINALER SICHERHEITSAUDIT
+Package: com.mobile.utilities.calculator · versionCode 7 / versionName "2.8.3"
+Erstellt: statische Quellcode-Analyse (Kotlin, XML, Gradle, JavaScript/WebView)
+================================================================================
+
+# 1. EXECUTIVE SUMMARY
+
+HINWEIS ZU DEN PRUEFPUNKTEN (ehrliche Korrektur):
+Die Audit-Vorgabe basierte auf einem veralteten Stand. Der Code wurde inzwischen
+weitergezogen:
+
+  - App-Name: "PIXLBIT" wurde durch einen vollstaendigen Branding-Scrub durch
+    neutrale Rechner-Bezeichnungen ersetzt (de: "Taschenrechner", en: "Calculator",
+    es: "Calculadora", ru: "Калькулятор", fr: "Calculatrice", ...). Die Marke
+    "PIXLBIT" existiert in Ressourcen/Code/Assets NICHT mehr.
+  - Package: com.cyberguardsolution.pixlbit -> com.mobile.utilities.calculator.
+  - Krypto: PBKDF2WithHmacSHA256 -> Argon2id (64 MiB, 3 Iterationen, 4 Lanes, 256-bit).
+  - PIN-Mindestlaenge: 8 -> 16 Zeichen.
+
+GESAMTBEWERTUNG:
+Der Schutz ist auf einem sehr hohen Niveau: netzwerk-isolierte App (Zero-Trust),
+Argon2id-KDF, AES-256-GCM, StrongBox/TEE-Master-Keys mit PRO ALIAS-Isolation,
+16-stellige numerische PIN, konstantzeitige Pruefung, unsichtbarer BruteForceGuard
+(5 Fehlversuche -> 5 min) mit Duress-Priorisierung, Rate-Limiting der Container-
+Entschluesselung, Anti-Debug/Anti-Frida, dynamische Signatur-Attestierung,
+Clipboard-Isolation mit Auto-Purge, Face-Down-Lock, FLAG_SECURE und R8-Obfuskation.
+
+Kein CRITICAL-Fund. Die verbleibenden Grenzen liegen in der inhärenten
+Patchbarkeit jeder reinen Client-seitigen Härtung (ohne Hardware-/Server-Attestation).
+
+
+# 2. SCHWACHSTELLEN-MATRIX
+
+| Grad | Anzahl | Kurzbeschreibung |
+|---|---|---|
+| CRITICAL | 0 | — |
+| HIGH | 1 | Signatur-Attestierung rein client-seitig patchbar; dynamischer Hash (leer => Pruefung uebersprungen) |
+| MEDIUM | 3 | Argon2id-OOM/CPU-DoS auf schwachen Geraeten; Clipboard auf API<33 nicht sensibel markiert; RAM-Hygiene nur heuristisch |
+| LOW | 3 | Anti-Frida/Anti-Debug standardmaessig umgehbar; keine Accessibility-Service-Erkennung; Face-Down ohne Hysterese |
+| INFORMATIONAL | 2 | Release komplett log-frei; StrongBox-Fallback unsichtbar |
+
+(BEHOBEN seit dem letzten Audit: Single-Master-Key -> Key-Isolation je Alias;
+fehlendes Rate-Limit der AES-Entschluesselung -> BruteForceGuard in aesDecrypt.)
+
+
+# 3. DETAILLIERTE PRUEFPUNKTE (aktueller Stand)
+
+## 3.1 Branding & Netzwerk-Isolation
+- App-Name: "Taschenrechner"/"Calculator"/"Calculadora"/"Калькулятор"/
+  "Calculatrice"/"電卓"/"계산기"/"ماشین‌حساب"/"آلة حاسبة"/"计算器"/
+  "Hesap Makinesi"/"ဂဏန်းတွက်စက်" (12 Sprachdateien).
+- Package/namespace: com.mobile.utilities.calculator (app) + .matrix (matrixui).
+- AndroidManifest.xml: android.permission.INTERNET deklarativ + tools:node="remove"
+  -> im Merged Manifest entfernt. Verifiziert: package="com.mobile.utilities.calculator",
+  android:label="@string/app_name", KEINE alten Branding-Strings.
+- allowBackup=false, dataExtractionRules + fullBackupContent (kein Cloud/D2D/ADB-Backup).
+
+## 3.2 Trigger, PIN & Brute-Force-Schutz
+- Rechner-Fassade; 3000-ms-Long-Press auf "√" (Pointer-Events); kurzer Tipp = Wurzel.
+- Komma-Pflicht (Dezimaltrenner "," oder "."); Mindestlaenge 16 Zeichen (MainPinStore
+  UND PanicCodeStore), max. 128.
+- Erststart-Auto-Setup (Henne-Ei-Fix): erster gueltiger Long-Press setzt die PIN.
+- BruteForceGuard: 5 Fehlversuche -> 5 min stille Sperre; rein timestamp-basiert
+  (System.currentTimeMillis), KEINE Schleifen/Thread.sleep; Zustand in
+  EncryptedSharedPreferences (eigener Key-Alias, StrongBox/TEE).
+- Falscheingabe: Silent Fail (keine Aktion, keine Meldung, Tarnung gewahrt).
+
+## 3.3 Duress-Protokoll & Priorisierung (kritischer Fix)
+- applySquareRoot-Reihenfolge: Komma-Pflicht -> Erststart -> DUERSS -> Lockout ->
+  Haupt-PIN -> Fehlversuch. isPanicCode steht VOR isBruteForceLockedOut.
+  => Notfall-Wipe ist bei aktivem Lockout IMMER ausloesbar; DoS gegen den
+  Panik-Code ausgeschlossen.
+- Hintergrund-Wipe: triggerIfDuress -> PanicCodeStore.verify (konstantzeitig) ->
+  PanicCodeStore.clear() + SecureWipeWork.enqueueOrFallback() (SecureDelete.wipeFilesOnly,
+  3-Pass-Shreddern, Expedited WorkManager, Fallback-Thread).
+- Display-Reset: clearAll() -> Anzeige "0", kein Hinweis, kein Aufhaenger.
+
+## 3.4 Kryptografie & Speicher-Hygiene
+- Argon2id (Argon2Kdf.kt): 64 MiB, 3 Iterationen, 4 Lanes, 256-bit Ausgabe
+  (Bouncy Castle, reine Java). Ersetzt PBKDF2 in MainPinStore, PanicCodeStore,
+  AesGcmCrypto.
+- MainPinStore/PanicCodeStore: 32-Byte-Salt (SecureRandom), Argon2id, konstantzeitiger
+  Vergleich (MessageDigest.isEqual), char[]-Nullung + fill(0) + System.gc().
+- AesGcmCrypto: AES-256-GCM (AES/GCM/NoPadding), 128-bit-Tag, 16-Byte-Salt,
+  12-Byte-Nonce (SecureRandom pro Operation), Argon2id-KDF, Memory-Wipe.
+- KeyStore/StrongBox (SecurePrefsFactory): setIsStrongBoxBacked(true) (API 28+),
+  TEE-Fallback; PRO Praeferenzdatei ein eigener Alias (calc_master_key_mainpin/
+  _panic/_bruteforce/_premium) -> Schluessel-Isolation.
+- Rate-Limiting der Container-Entschluesselung: aesDecrypt prueft
+  BruteForceGuard.isLockedOut, registriert Fehlversuche bei GeneralSecurityException
+  (TagMismatch/BadPadding), setzt bei Erfolg zurueck.
+
+## 3.5 Systemschutz & R8
+- R8: isMinifyEnabled=true, isShrinkResources=true, isDebuggable=false.
+- Keep-Regeln (proguard-rules.pro): AndroidBridge (@JavascriptInterface + @Keep),
+  SecureDelete, PremiumManager, PanicCodeStore, SecureWipeWorker; generisches
+  @Keep-Netz; -assumenosideeffects fuer android.util.Log (Logcat-Eliminierung).
+- Build-Vertraege: verifyJsBridgeKept (R8-Mapping der Bruecken) +
+  verifyReleaseHardening (debuggable=false, BuildConfig.DEBUG=false).
+- FLAG_SECURE (Screenshots/Preview-Schutz); filterTouchesWhenObscured (Tapjacking)
+  auf WebView + PIN-Dialogen.
+- IntegrityGuard: Debug.isDebuggerConnected + waitingForDebugger, TracerPid
+  (/proc/self/status), Frida-Port 27042, Signatur-Attestierung (SHA-256 via
+  PackageManager) gegen BuildConfig.EXPECTED_SIGNATURE_SHA256.
+- ClipboardGuard: EXTRA_IS_SENSITIVE (API 33+), 20-s-Auto-Purge, Purge bei
+  onStop/onTrimMemory.
+- Face-Down-Lock: Accelerometer-SensorEventListener (z < -9 m/s²) ->
+  secureWipeSensitiveData() + webView.reload().
+
+
+# 4. RESTRISIKEN & SYSTEMGRENZEN
+
+1. ROOT-/KERNEL-FORENSIK (Cellebrite, GrayKey, Frida auf gerootetem Geraet):
+   RAM-Dump extrahiert laufende AES-Schluessel/Passphrasen; die "at-rest"-
+   Verschluesselung ist umgangen, sobald der Prozess laeuft oder der Keystore-
+   Schluessel (entsperrtes Geraet) extrahiert wird.
+2. CLIENT-SEITIGE HAERTUNG PATCHBAR: Anti-Debug, Anti-Frida und Signaturpruefung
+   sind ohne Hardware-Attestation/Server-Bindung grundsaetzlich patchbar. Der
+   dynamische Signatur-Hash (BuildConfig) ist leer => Pruefung wird uebersprungen;
+   im Release muss RELEASE_SIGNATURE_SHA256 gesetzt werden.
+3. ZERO-TRUST-TRADEOFF: Kein INTERNET schliesst Play Integrity API, Zertifikats-
+   Pinning und Remote-Attestation aus.
+4. RAM-HYGIENE HEURISTISCH: System.gc() ist nur ein Hinweis; unveraenderliche
+   Java/JS-Strings und die SecretKeySpec-Kopie sind nicht aktiv nullbar.
+5. ARGON2ID-PERFORMANCE: 64 MiB pro Hash -> mehrere Sekunden auf schwachen
+   Geraeten (bewusster Tradeoff Sicherheit vs. Komfort).
+6. CLIPBOARD API<33: EXTRA_IS_SENSITIVE existiert erst ab Android 13; auf aelteren
+   Systemen ist der Clip nicht als sensibel markiert.
+
+
+# 5. HAERTUNGS-EMPFEHLUNGEN (finales Production-Release)
+
+1. (HIGH) RELEASE_SIGNATURE_SHA256 beim Release-Build setzen
+   (-PRELEASE_SIGNATURE_SHA256=<SHA-256 des Upload-Keystores>); andernfalls ist
+   die Signaturpruefung inaktiv.
+2. (INFORMATIONAL) Falls ein Release-Build ohne Zero-Trust vertretbar ist:
+   Play Integrity API (Play-Protect-Attestation) fuer echten Anti-Repackaging.
+3. (MEDIUM) Argon2id-Parameter je Geraeteklasse staffeln oder CPU-Cap, um OOM zu
+   vermeiden.
+4. (LOW) Accessibility-Service-Erkennung (AccessibilityManager) ergaenzen.
+5. (LOW) Face-Down-Hysterese (Zeitfenster + Wiederholung), um Fehlausloeser zu
+   reduzieren.
+6. (EXTERN) Google-Play-Produkt-ID calc_premium_lifetime in der Play Console
+   registrieren (nach dem Branding-Scrub geaendert).
+
+================================================================================
+ENDE DES BERICHTS
+================================================================================

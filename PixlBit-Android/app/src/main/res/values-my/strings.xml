@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ဂဏန်းတွက်စက်</string>
+    <string name="share_extracting">ပုံကို ခွဲခြမ်းစိတ်ဖြာနေသည်…</string>
+    <string name="share_status_error">အမှား</string>
+    <string name="share_error_no_image">ပုံတစ်ပုံမျှ မပို့ထားပါ (EXTRA_STREAM မပါသော ACTION_SEND)။</string>
+    <string name="share_error_decode">ပုံကို ဖွင့်၍မရပါ။</string>
+    <string name="share_error_not_image">မျှဝေထားသော အကြောင်းအရာသည် ပုံမဟုတ်ပါ သို့မဟုတ် အမျိုးအစားမမှန်ပါ။</string>
+    <string name="share_error_no_payload">ဤပုံတွင် အကျုံးဝင်သော Calculator ပစ်ဇယ်အလွှာမရှိပါ သို့မဟုတ် ဖိုင်ကို ပြုပြင်ထားပါသည်။</string>
+    <string name="share_error_too_large">ပုံသည် လုံခြုံစွာ လုပ်ဆောင်ရန် ကြီးလွန်းပါသည်။ သေးငယ်သောပုံကို မျှဝေပါ။</string>
+    <string name="share_prompt">လျှို့ဝှက်စာတို တွေ့ရှိသည် – စကားဝှက်ထည့်ပါ။</string>
+    <string name="share_decrypting">စာဝှက်ဖျက်နေသည်…</string>
+    <string name="share_password_title">စာဝှက်ဖျက်ရန် စကားဝှက်</string>
+    <string name="share_password_hint">စကားဝှက်</string>
+    <string name="share_decrypt">စာဝှက်ဖျက်မည်</string>
+    <string name="share_cancel">မလုပ်တော့ပါ</string>
+    <string name="share_error_empty_password">စကားဝှက်ထည့်ပါ။</string>
+    <string name="share_error_wrong_password">စကားဝှက်မှားနေသည် သို့မဟုတ် ဒေတာ ပြုပြင်ထားသည်။</string>
+    <string name="share_result_title">စာဝှက်ဖျက်ပြီး စာသား:</string>
+    <string name="panic_setup_title_create">အရေးပေါ်ကုဒ် သတ်မှတ်မည်</string>
+    <string name="panic_setup_title_change">အရေးပေါ်ကုဒ် ပြောင်းမည်</string>
+    <string name="panic_setup_info_create">အရေးပေါ်ကုဒ် သတ်မှတ်ပါ။ နောက်ပိုင်းတွင် ဤကုဒ်ကို စကားဝှက်အဖြစ် ထည့်ပါက Calculator သည် သိမ်းထားသော ပုံများနှင့် ဒေတာအားလုံးကို ချက်ချင်း ဖျက်ပစ်ပါမည်။\n\nကုဒ်တွင် ဒဿမခွဲခြားသင်္ကေတ (ကော်မာ သို့မဟုတ် အစက်) ပါဝင်ရမည်၊ ဥပမာ 12.34 – ဤနည်းဖြင့်သာ ဂဏန်းတွက်စက်က ၎င်းကို ကုဒ်အဖြစ် မှတ်မိပါသည်။\n\nကုဒ်ကို စာသားအတိုင်း မသိမ်းဘဲ ပြန်မရနိုင်ပါ – ကောင်းစွာ မှတ်သားထားပါ။</string>
+    <string name="panic_setup_info_change">အရေးပေါ်ကုဒ်အသစ် သတ်မှတ်ပါ။ လုံခြုံရေးအတွက် လက်ရှိကုဒ်ကို ဦးစွာ မေးပါမည်။</string>
+    <string name="panic_setup_current_hint">လက်ရှိ အရေးပေါ်ကုဒ်</string>
+    <string name="panic_setup_new_hint">အရေးပေါ်ကုဒ်အသစ် (အနည်းဆုံး %1$d လုံး၊ ကော်မာ/အစက်ပါ)</string>
+    <string name="panic_setup_repeat_hint">အရေးပေါ်ကုဒ်အသစ် (ထပ်ရိုက်ပါ)</string>
+    <string name="panic_setup_save">သိမ်းမည်</string>
+    <string name="panic_setup_create">ကုဒ်သတ်မှတ်မည်</string>
+    <string name="panic_setup_cancel">မလုပ်တော့ပါ</string>
+    <string name="panic_saved">အရေးပေါ်ကုဒ် သိမ်းပြီးပါပြီ</string>
+    <string name="panic_error_current">လက်ရှိ အရေးပေါ်ကုဒ် မှားနေသည်။</string>
+    <string name="panic_error_min_length">အရေးပေါ်ကုဒ်သည် အနည်းဆုံး %1$d လုံး ရှိရမည်။</string>
+    <string name="panic_error_separator">အရေးပေါ်ကုဒ်တွင် ကော်မာ သို့မဟုတ် အစက် ပါဝင်ရမည် (ဥပမာ 12.34)။</string>
+    <string name="panic_error_too_long">အရေးပေါ်ကုဒ် ရှည်လွန်းသည်။</string>
+    <string name="panic_error_mismatch">ထည့်သွင်းမှု နှစ်ခု မတူပါ။</string>
+    <string name="panic_error_store">အရေးပေါ်ကုဒ် မသိမ်းနိုင်ပါ။ ထပ်စမ်းကြည့်ပါ။</string>
+    <string name="download_blocked">ဒေါင်းလုဒ် ပိတ်ထားသည်: Calculator သည် ကွန်ရက်မှ ဘာမျှ မဆွဲချပါ။</string>
+    <string name="download_saved">ဒေါင်းလုဒ်ဖိုဒါတွင် သိမ်းပြီး</string>
+    <string name="download_started">ဒေါင်းလုဒ် စတင်ပြီး</string>
+    <string name="download_failed">ဒေါင်းလုဒ် မအောင်မြင်ပါ</string>
+</resources>

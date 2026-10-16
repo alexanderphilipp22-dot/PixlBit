@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ماشین‌حساب</string>
+    <string name="share_extracting">در حال تحلیل تصویر…</string>
+    <string name="share_status_error">خطا</string>
+    <string name="share_error_no_image">هیچ تصویری ارائه نشده است (ACTION_SEND بدون EXTRA_STREAM).</string>
+    <string name="share_error_decode">تصویر بارگیری نشد.</string>
+    <string name="share_error_not_image">محتوای به‌اشتراک‌گذاشته‌شده تصویر نیست یا نوع نامعتبری دارد.</string>
+    <string name="share_error_no_payload">این تصویر شامل بستر پیکسلی معتبر Calculator نیست یا فایل دستکاری شده است.</string>
+    <string name="share_error_too_large">تصویر برای پردازش امن بیش از حد بزرگ است. لطفاً تصویر کوچک‌تری به اشتراک بگذارید.</string>
+    <string name="share_prompt">پیام مخفی پیدا شد – لطفاً رمز عبور را وارد کنید.</string>
+    <string name="share_decrypting">در حال رمزگشایی…</string>
+    <string name="share_password_title">رمز عبور رمزگشایی</string>
+    <string name="share_password_hint">رمز عبور</string>
+    <string name="share_decrypt">رمزگشایی</string>
+    <string name="share_cancel">انصراف</string>
+    <string name="share_error_empty_password">لطفاً رمز عبور وارد کنید.</string>
+    <string name="share_error_wrong_password">رمز عبور نادرست یا داده دستکاری شده است.</string>
+    <string name="share_result_title">متن رمزگشایی‌شده:</string>
+    <string name="panic_setup_title_create">تنظیم کد اضطراری</string>
+    <string name="panic_setup_title_change">تغییر کد اضطراری</string>
+    <string name="panic_setup_info_create">یک کد اضطراری تنظیم کنید. اگر بعداً این کد به‌جای رمز عبور وارد شود، Calculator بلافاصله همه تصاویر و داده‌های ذخیره‌شده را حذف می‌کند.\n\nکد باید شامل جداکننده اعشار (ویرگول یا نقطه) باشد، مانند 12.34 – فقط به این شکل ماشین‌حساب آن را به‌عنوان کد تشخیص می‌دهد.\n\nکد به‌صورت متن ساده ذخیره نمی‌شود و قابل بازیابی نیست – لطفاً آن را خوب به خاطر بسپارید.</string>
+    <string name="panic_setup_info_change">کد اضطراری جدیدی تنظیم کنید. برای امنیت، ابتدا کد فعلی پرسیده می‌شود.</string>
+    <string name="panic_setup_current_hint">کد اضطراری فعلی</string>
+    <string name="panic_setup_new_hint">کد اضطراری جدید (حداقل %1$d نویسه، با ویرگول/نقطه)</string>
+    <string name="panic_setup_repeat_hint">کد اضطراری جدید (تکرار)</string>
+    <string name="panic_setup_save">ذخیره</string>
+    <string name="panic_setup_create">تنظیم کد</string>
+    <string name="panic_setup_cancel">انصراف</string>
+    <string name="panic_saved">کد اضطراری ذخیره شد</string>
+    <string name="panic_error_current">کد اضطراری فعلی نادرست است.</string>
+    <string name="panic_error_min_length">کد اضطراری باید حداقل %1$d نویسه داشته باشد.</string>
+    <string name="panic_error_separator">کد اضطراری باید شامل ویرگول یا نقطه باشد (مانند 12.34).</string>
+    <string name="panic_error_too_long">کد اضطراری بیش از حد طولانی است.</string>
+    <string name="panic_error_mismatch">دو ورودی با هم مطابقت ندارند.</string>
+    <string name="panic_error_store">کد اضطراری ذخیره نشد. لطفاً دوباره تلاش کنید.</string>
+    <string name="download_blocked">دانلود مسدود شد: Calculator چیزی از شبکه بارگیری نمی‌کند.</string>
+    <string name="download_saved">در پوشه دانلود ذخیره شد</string>
+    <string name="download_started">دانلود آغاز شد</string>
+    <string name="download_failed">دانلود ناموفق بود</string>
+</resources>

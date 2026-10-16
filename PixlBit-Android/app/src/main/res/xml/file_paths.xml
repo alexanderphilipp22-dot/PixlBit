@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <files-path name="calc_album" path="Pictures/Calculator/" />
+
+    <cache-path name="share_bin" path="share/" />
+</paths>

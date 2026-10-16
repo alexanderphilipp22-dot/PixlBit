@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="com.android.vending.BILLING" />
+
+    <uses-permission
+        android:name="android.permission.INTERNET"
+        tools:node="remove" />
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    <!-- Vordergrunddienst-Typ fuer das Datei-Shredding des Duress-Wipes:
+         WorkManager fuehrt eine Expedited Work auf Android-Versionen ohne
+         JobScheduler-Expedited-Unterstuetzung als Vordergrunddienst aus. Dafuer
+         verlangt Android 14 (API 34) die Deklaration des Typs + die passende
+         Berechtigung. Beide sind NORMAL-Permissions: kein Laufzeitdialog, kein
+         Netzwerkzugriff, ausschliesslich lokal fuer den eigenen Wipe. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+
+    <!-- Backup / Cloud-Restore / D2D-Transfer explizit ausschliessen (Defence-in-Depth). -->
+    <!--
+        Launcher-Icon = TARNUNG: @mipmap/ic_launcher verweist bewusst auf
+        klassische, starre Legacy-PNGs (mipmap-mdpi/hdpi/xhdpi/xxhdpi/xxxhdpi
+        /ic_launcher.png), generiert aus der Vorlage icon_template.jpg.jpg.
+        Kein adaptives Icon (kein mipmap-anydpi-v26), damit der Launcher die
+        Kachel nicht maskiert oder abschneidet: Das Icon ist ein
+        kantenfuellendes VIERECK (Taschenrechner im iOS-Design: schwarze,
+        flaechendeckende Kachel, runde Tasten, orange Operatoren mit
+        mathematischen Symbolen, bewusst ohne Ziffern). Bewusst KEIN
+        Schloss-/Schild-Symbol: Calculator ist eine Steganographie-App mit
+        Taschenrechner-Fassade und darf auf dem Homescreen nicht als
+        Sicherheits-App erkennbar sein.
+    -->
+    <application
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Calculator"
+        android:hardwareAccelerated="true"
+        android:supportsRtl="true">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Calculator"
+            android:configChanges="orientation|screenSize|keyboardHidden|uiMode">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ShareTargetActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Calculator"
+            android:configChanges="orientation|screenSize|keyboardHidden|uiMode">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="application/octet-stream" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="androidx.work.impl.foreground.SystemForegroundService"
+            android:foregroundServiceType="dataSync"
+            tools:node="merge" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>
